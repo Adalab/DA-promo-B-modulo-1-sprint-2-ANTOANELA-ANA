@@ -18,6 +18,9 @@ FROM orders
 		ON order_details.order_id = orders.order_id
 WHERE country = "UK"
 GROUP BY empresa, Año;
+
+-- ejercicio 3:
+
 	
 
 
