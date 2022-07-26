@@ -40,7 +40,17 @@ CASE
 	WHEN unit_price*quantity > 2000 THEN "Alto" 
     ELSE "Bajo"
     END AS Costes
-FROM order_details;
+FROM order_details
+GROUP BY order_id;
+
+-- EL CORRECTO SEGUN ALEJANDRO
+SELECT order_id, SUM(unit_price * quantity) AS CantidadDinero,
+CASE WHEN  SUM(unit_price * quantity) < 2000 THEN "Bajo"
+	ELSE "Alto"
+	END AS costes
+    FROM order_details
+GROUP BY order_id;
+
 
 
 
