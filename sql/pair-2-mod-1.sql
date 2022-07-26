@@ -10,15 +10,16 @@ GROUP BY customers.company_name;
 
 # ejercicio 2: productos pedidos por empresa en UK por año:
 
-SELECT customers.company_name, YEAR(orders.order_date), COUNT(order_details.quantity)
+SELECT customers.company_name AS empresa, YEAR(orders.order_date) AS Año, SUM(order_details.quantity) AS cantidad_productos
 FROM orders
-	INNER JOIN order_details 
-		ON orders.order_id = order_details.order_id
-	INNER JOIN customers 
-		ON customers.customer_id = orders.customer_id
+	INNER JOIN customers
+		ON orders.customer_id = customers.customer_id
+	INNER JOIN order_details
+		ON order_details.order_id = orders.order_id
+WHERE country = "UK"
+GROUP BY empresa, Año;
 	
-WHERE customers.country = "UK"
-GROUP BY customers.company_name AND  YEAR(orders.order_date);
+
 
 
 
