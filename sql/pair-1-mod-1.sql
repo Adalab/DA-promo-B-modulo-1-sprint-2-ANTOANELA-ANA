@@ -35,7 +35,7 @@ HAVING COUNT(employee_id) >= 4;
 
 # EJERCICIO 6: CREAR COLUMNA QUE CLASIFIQUE LOS PEDIDOS SEGUN COSTES
 
-SELECT order_id, unit_price*quantity AS coste_total,
+SELECT order_id, SUM(unit_price*quantity) AS coste_total,
 CASE 
 	WHEN SUM(unit_price*quantity) > 2000 THEN "Alto" 
     ELSE "Bajo"
