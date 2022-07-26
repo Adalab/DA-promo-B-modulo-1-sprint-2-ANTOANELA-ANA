@@ -1,6 +1,6 @@
 USE northwind;
 
-# EJERCICIO 1: CANTIDAD DE PEDIDOS Y MAX FREIGHT POR EMPELADO 
+# EJERCICIO 1: CANTIDAD DE PEDIDOS Y MAX FREIGHT POR EMPLEADO 
 
 SELECT COUNT(order_id) AS cantidad_de_pedidos, MAX(freight), employee_id
 FROM orders
@@ -33,13 +33,13 @@ FROM employees
 GROUP BY city
 HAVING COUNT(employee_id) >= 4;
 
-# EJERCICIO 6: CREAR COLUMNA QUE CLASIFIQUE LOS PEDIDOS SEGUN COSTOS
+# EJERCICIO 6: CREAR COLUMNA QUE CLASIFIQUE LOS PEDIDOS SEGUN COSTES
 
-SELECT order_id, unit_price*quantity AS costo_total,
+SELECT order_id, unit_price*quantity AS coste_total,
 CASE 
 	WHEN unit_price*quantity > 2000 THEN "Alto" 
     ELSE "Bajo"
-    END AS Costos
+    END AS Costes
 FROM order_details;
 
 
