@@ -1,34 +1,42 @@
 use northwind;
 
--- ej 1 extraer toda la info sobre las compañias que tengamos en la bbdd
-select city, company_name, contact_name, "customers" as relationship
-from customers
-union
-select city, company_name, contact_name, "suppliers" as relationship
-from suppliers;
+# EJERCICIO 1: Extraer toda la info sobre las compañias que tengamos en la bbdd
 
--- ej 2 extraer todos los pedidos gestionados por Nancy Davolio
-select *
-from orders
-where employee_id = 1;
+SELECT city, company_name, contact_name, "customers" AS relationship
+FROM customers
+UNION
+SELECT city, company_name, contact_name, "suppliers" AS relationship
+FROM suppliers
+ORDER BY city;
 
--- ej 3 extraed todas las empresas que no han comprado en 1997
-select company_name, country
-from customers
-where customer_id not in (
- select order_date
- from orders
- where year(order_date) = 1997);
+# EJERCICIO 2: Extraer todos los pedidos gestionados por Nancy Davolio
+
+SELECT *
+FROM orders
+WHERE employee_id IN
+(SELECT employee_id
+FROM employees
+WHERE last_name = 'Davolio' AND first_name = 'Nancy');
+
+# EJERCICIO 3: Extraed todas las empresas que no han comprado en 1997
+
+SELECT company_name, country
+FROM customers
+WHERE customer_id NOT IN (
+ SELECT customer_id
+ FROM orders
+ WHERE YEAR(order_date) = 1997);
  
- -- ej 4 Extraed toda la información de los pedidos donde tengamos "Konbu"
- select *
- from orders as pedidos
- where order_id in (
-	select order_id
-    from products
-    inner join order_details
-    on order_details.product_id = products.product_id
-    where   product_name = "Konbu");
+ # EJERCICIO 4: Extraed toda la información de los pedidos donde tengamos "Konbu"
+ 
+ SELECT *
+ FROM orders AS pedidos
+ WHERE order_id IN (
+	SELECT order_id
+    FROM products
+    INNER JOIN order_details
+    ON order_details.product_id = products.product_id
+    WHERE product_name = "Konbu");
  
  
 

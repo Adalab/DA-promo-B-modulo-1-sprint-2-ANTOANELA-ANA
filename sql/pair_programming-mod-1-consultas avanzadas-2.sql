@@ -2,13 +2,13 @@ USE northwind;
 
 # EJERCICIO 1: CANTIDAD DE PEDIDOS Y MAX FREIGHT POR EMPLEADO 
 
-SELECT COUNT(order_id) AS cantidad_de_pedidos, MAX(freight), employee_id
+SELECT employee_id, COUNT(order_id) AS cantidad_de_pedidos, MAX(freight)
 FROM orders
 GROUP BY employee_id;
 
 # EJERCICIO 2: DESCARTAR PEDIDOS SIN FECHA Y ORDENAR
 
-SELECT COUNT(order_id) AS cantidad_de_pedidos, MAX(freight), employee_id
+SELECT employee_id, COUNT(order_id) AS cantidad_de_pedidos, MAX(freight)
 FROM orders
 WHERE shipped_date != "0000-00-00 00:00:00" 
 GROUP BY employee_id
@@ -16,7 +16,7 @@ ORDER BY employee_id ASC;
 
 # EJERCICIO 3: CANTIDAD DE PEDIDOS SEGÚN FECHAS
 
-SELECT COUNT(order_id) AS cantidad_de_pedidos, DAY(order_date) as Día, MONTH(order_date) AS Mes, YEAR(order_date) AS Año
+SELECT COUNT(order_id) AS cantidad_de_pedidos, DAY(order_date) AS Día, MONTH(order_date) AS Mes, YEAR(order_date) AS Año
 FROM orders
 GROUP BY order_date;
 
