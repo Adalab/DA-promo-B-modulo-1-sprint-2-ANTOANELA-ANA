@@ -27,8 +27,7 @@ FROM companias_clientes;
 WITH facturas_clientes (facturas_emitidas, fecha_factura, customer_id, compañía) 
 AS (SELECT orders.order_id, orders.order_date, customers.customer_id, customers.company_name
 	FROM orders
-    INNER JOIN customers
-    USING (customer_id))
+    INNER JOIN customers)
 SELECT *
 FROM facturas_clientes;
 
@@ -38,8 +37,7 @@ FROM facturas_clientes;
 WITH facturas_clientes (facturas_emitidas, fecha_factura, customer_id, compañía) 
 AS (SELECT orders.order_id, orders.order_date, customers.customer_id, customers.company_name
 	FROM orders
-    INNER JOIN customers
-    USING (customer_id))
+    INNER JOIN customers)
 SELECT customer_id, COUNT(order_id) AS cantidad_de_facturas
 FROM orders
 GROUP BY customer_id
