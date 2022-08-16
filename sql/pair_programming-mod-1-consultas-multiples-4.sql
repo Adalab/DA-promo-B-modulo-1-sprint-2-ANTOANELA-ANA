@@ -36,9 +36,11 @@ SELECT product_name, unit_price
 FROM products
 WHERE unit_price IN (
 SELECT DISTINCT(unit_price)
-FROM order_details
+FROM order_details)
 ORDER BY unit_price DESC
-LIMIT 10);
+LIMIT 10;
+
+# CONSULTA SIMPLE
 
 SELECT product_name, unit_price
 FROM products

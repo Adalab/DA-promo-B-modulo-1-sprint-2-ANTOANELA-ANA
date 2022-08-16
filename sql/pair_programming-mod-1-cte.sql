@@ -37,9 +37,12 @@ ORDER BY cantidad_de_facturas;
 
 # EJERCICIO 5: Cuál la cantidad media pedida de todos los productos ProductID.
 
-SELECT  product_id, SUM(quantity) AS cantidad
+WITH cantidad AS (
+SELECT  product_id,  SUM(quantity) AS cantidad_productos
 FROM order_details
-GROUP BY product_id;
+GROUP BY product_id)
+SELECT AVG(cantidad_productos) AS cantidad_media
+FROM cantidad;
 
 
 
