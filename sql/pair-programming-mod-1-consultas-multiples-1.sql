@@ -20,10 +20,6 @@ FROM orders
 WHERE country = "UK"
 GROUP BY empresa, Año;
 
--- ejercicio 3:
-
-	
-
 # ejercicio 3: dinero perdido por pedidos en empresas de UK
 
 SELECT customers.company_name AS empresa, YEAR(orders.order_date) AS Año, SUM(order_details.quantity) AS cantidad_productos, 
